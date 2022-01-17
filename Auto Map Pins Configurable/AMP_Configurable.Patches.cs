@@ -53,7 +53,7 @@ namespace AMP_Configurable.Patches
           bool isChecked)
         {
             Mod.Log.LogInfo("[AMP] Trying to add pin");
-            return ((type != Minimap.PinType.Death ? 0 : (Mod.SimilarPinExists(pos, type, ___m_pins, name, PinnedObject.aIcon, out Minimap.PinData _) ? 1 : 0)) & (save ? 1 : 0)) == 0;
+            return ((type != Minimap.PinType.Death ? 0 : (Mod.SimilarPinExists(pos, type, ___m_pins, name, PinnedObject.aIcon, Mod.pinClusterDistance.Value, out Minimap.PinData _) ? 1 : 0)) & (save ? 1 : 0)) == 0;
         }
 
         [HarmonyPatch(typeof(Minimap), "UpdateProfilePins")]
@@ -305,6 +305,13 @@ namespace AMP_Configurable.Patches
                     if (Mod.pinTurnip.Value)
                     {
                         aName = "Turnip";
+                    }
+                    break;
+                case "Pickable_SeedOnion":
+                case "Pickable_SeedOnion(Clone)":
+                    if (Mod.pinOnion.Value)
+                    {
+                        aName = "Onion";
                     }
                     break;
                 default:

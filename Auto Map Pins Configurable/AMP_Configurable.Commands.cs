@@ -38,7 +38,8 @@ namespace AMP_Configurable.Commands
           "Thistle",
           "Tin",
           "TrollCave",
-          "Turnip"
+          "Turnip",
+          "Onion"
         };
 
 
